@@ -1,0 +1,2 @@
+M2Crypto==0.21.1
+wsgiref==0.1.2

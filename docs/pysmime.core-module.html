@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pysmime.core</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pysmime-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pysmime-module.html">Package&nbsp;pysmime</a> ::
+        Module&nbsp;core
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pysmime.core-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module core</h1><p class="nomargin-top"><span class="codelink"><a href="pysmime.core-pysrc.html">source&nbsp;code</a></span></p>
+<p>Core functions to verify, sign, encrypt and decrypt SMIME data, build 
+  just on top of M2Crypto library wrapper to OpenSSL.</p>
+
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pysmime.core.BadPKCS7Type-class.html" class="summary-name">BadPKCS7Type</a><br />
+      Exception raised if requested PKCS#7 type is not valid.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pysmime.core.CertStoreNotAvailable-class.html" class="summary-name">CertStoreNotAvailable</a><br />
+      Exception raised if the reference certstore for verification is not
+        available.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pysmime.core.MissingSignerCertificate-class.html" class="summary-name">MissingSignerCertificate</a><br />
+      Exception raised if the input PKCS#7 is not a signed PKCS#7.
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">M2Crypto.SMIME.PKCS7</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pysmime.core-module.html#encrypt" class="summary-sig-name">encrypt</a>(<span class="summary-sig-arg">input_bio</span>,
+        <span class="summary-sig-arg">cert</span>,
+        <span class="summary-sig-arg">keyring_source</span>,
+        <span class="summary-sig-arg">cypher</span>)</span><br />
+      Encrypts the input data with the public key in the certificate from 
+      keyring source with selected cypher.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pysmime.core-pysrc.html#encrypt">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">str</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pysmime.core-module.html#decrypt" class="summary-sig-name">decrypt</a>(<span class="summary-sig-arg">input_bio</span>,
+        <span class="summary-sig-arg">private_key</span>,
+        <span class="summary-sig-arg">cert</span>,
+        <span class="summary-sig-arg">keyring_source</span>,
+        <span class="summary-sig-arg">type</span>)</span><br />
+      Decrypts the input data with the private key and the certificate from
+      keyring source.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pysmime.core-pysrc.html#decrypt">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">M2Crypto.SMIME.PKCS7</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pysmime.core-module.html#sign" class="summary-sig-name">sign</a>(<span class="summary-sig-arg">input_bio</span>,
+        <span class="summary-sig-arg">private_key</span>,
+        <span class="summary-sig-arg">cert</span>,
+        <span class="summary-sig-arg">keyring_source</span>,
+        <span class="summary-sig-arg">type</span>)</span><br />
+      Signs the input data with the private key and the certificate from 
+      keyring source.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pysmime.core-pysrc.html#sign">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list or None</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pysmime.core-module.html#verify" class="summary-sig-name">verify</a>(<span class="summary-sig-arg">input_bio</span>,
+        <span class="summary-sig-arg">certstore_path</span>,
+        <span class="summary-sig-arg">AUTO_SIGNED_CERT</span>,
+        <span class="summary-sig-arg">type</span>)</span><br />
+      Retrieves X.509 certificate from input data and verifies signed 
+      message using as certificate store input certstore, inspired by: <a 
+      href="http://code.activestate.com/recipes/285211/" 
+      target="_top">http://code.activestate.com/recipes/285211/</a>.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pysmime.core-pysrc.html#verify">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="encrypt"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">encrypt</span>(<span class="sig-arg">input_bio</span>,
+        <span class="sig-arg">cert</span>,
+        <span class="sig-arg">keyring_source</span>,
+        <span class="sig-arg">cypher</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pysmime.core-pysrc.html#encrypt">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Encrypts the input data with the public key in the certificate from 
+  keyring source with selected cypher.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>input_bio</code></strong> (M2Crypto.BIO) - input data to encrypt.</li>
+        <li><strong class="pname"><code>cert</code></strong> (filepath or M2Crypto.BIO or M2Crypto.X509.X509) - the recipient certificate reference from filepath, could be from 
+          file, from memory or from pkcs11 smartcard, based on 
+          keyring_soruce input parameter.</li>
+        <li><strong class="pname"><code>keyring_source</code></strong> (str) - the type of the source for input certificate, used to recall the 
+          appropriate method for encrypter settings. Ammitted values are: 
+          file, memory, pkcs11.</li>
+        <li><strong class="pname"><code>cypher</code></strong> (str) - the cypher to use for encryption of the data, run &quot;openssl 
+          enc -help&quot; for supported cyphers, you have to choose a 
+          public key cypher from availables.</li>
+    </ul></dd>
+    <dt>Returns: M2Crypto.SMIME.PKCS7</dt>
+        <dd>the PKCS#7 encrypted data in PEM format.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="decrypt"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">decrypt</span>(<span class="sig-arg">input_bio</span>,
+        <span class="sig-arg">private_key</span>,
+        <span class="sig-arg">cert</span>,
+        <span class="sig-arg">keyring_source</span>,
+        <span class="sig-arg">type</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pysmime.core-pysrc.html#decrypt">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Decrypts the input data with the private key and the certificate from 
+  keyring source.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>input_bio</code></strong> (M2Crypto.BIO) - input data to sign.</li>
+        <li><strong class="pname"><code>private_key</code></strong> (filepath or M2Crypto.BIO or M2Crypto.EVP.PKey) - recipient private key reference, could be from file, from memory 
+          or from pkcs11 smartcard, based on keyring_soruce input 
+          parameter.</li>
+        <li><strong class="pname"><code>cert</code></strong> (filepath or M2Crypto.BIO or M2Crypto.X509.X509) - recipient certificate, could be from filepath, from memory or 
+          from pkcs11 smartcard, based on keyring_soruce input parameter.</li>
+        <li><strong class="pname"><code>keyring_source</code></strong> (str) - the type of the source for input certificate, used to recall the 
+          appropriate method for decrypter settings. Ammitted values are: 
+          file, memory, pkcs11.</li>
+        <li><strong class="pname"><code>type</code></strong> (str) - specifies the type of input PKCS#7 data: PEM or DER</li>
+    </ul></dd>
+    <dt>Returns: str</dt>
+        <dd>the decrypted data in plain form.</dd>
+    <dt>Raises:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code><strong class='fraise'><a href="pysmime.core.BadPKCS7Type-class.html">BadPKCS7Type</a></strong></code> - The requested PKCS#7 type is not valid. Ammitted values are PEM and
+        DER.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="sign"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">sign</span>(<span class="sig-arg">input_bio</span>,
+        <span class="sig-arg">private_key</span>,
+        <span class="sig-arg">cert</span>,
+        <span class="sig-arg">keyring_source</span>,
+        <span class="sig-arg">type</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pysmime.core-pysrc.html#sign">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Signs the input data with the private key and the certificate from 
+  keyring source.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>input_bio</code></strong> (M2Crypto.BIO) - input data to sign.</li>
+        <li><strong class="pname"><code>private_key</code></strong> (filepath or M2Crypto.BIO or M2Crypto.EVP.PKey) - sender private key reference, could be from file, from memory or 
+          from pkcs11 smartcard, based on keyring_soruce input parameter.</li>
+        <li><strong class="pname"><code>cert</code></strong> (filepath or M2Crypto.BIO or M2Crypto.X509.X509) - sender certificate, could be from filepath, from memory or from 
+          pkcs11 smartcard, based on keyring_soruce input parameter.</li>
+        <li><strong class="pname"><code>keyring_source</code></strong> (str) - the type of the source for input certificate, used to recall the 
+          appropriate method for signer settings. Ammitted values are: 
+          file, memory, pkcs11.</li>
+        <li><strong class="pname"><code>type</code></strong> (str) - specifies the type of output PKCS#7 data: PEM or DER</li>
+    </ul></dd>
+    <dt>Returns: M2Crypto.SMIME.PKCS7</dt>
+        <dd>the PKCS#7 signed data in PEM or DER format.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="verify"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">verify</span>(<span class="sig-arg">input_bio</span>,
+        <span class="sig-arg">certstore_path</span>,
+        <span class="sig-arg">AUTO_SIGNED_CERT</span>,
+        <span class="sig-arg">type</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pysmime.core-pysrc.html#verify">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Retrieves X.509 certificate from input data and verifies signed 
+  message using as certificate store input certstore, inspired by: <a 
+  href="http://code.activestate.com/recipes/285211/" 
+  target="_top">http://code.activestate.com/recipes/285211/</a>.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>input_bio</code></strong> (M2Crypto.BIO) - input data to verify</li>
+        <li><strong class="pname"><code>certstore_path</code></strong> (filepath) - path to the file of the trusted certificates, for example 
+          /etc/ssl/certs/ca-certificats.crt.</li>
+        <li><strong class="pname"><code>type</code></strong> (str) - specifies the type of input PKCS#7 data: PEM or DER</li>
+        <li><strong class="pname"><code>AUTOSIGNED_CERT</code></strong> - to accept or not auto signed certificates as valid for 
+          verification.</li>
+        <li><strong class="pname"><code>AUTO_SIGNED_CERT</code></strong> (boolean)</li>
+    </ul></dd>
+    <dt>Returns: list or None</dt>
+        <dd>a list of verified certificates retrieved from the original data 
+          if verification success, else None.</dd>
+    <dt>Raises:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code><strong class='fraise'><a href="pysmime.core.CertStoreNotAvailable-class.html">CertStoreNotAvailable</a></strong></code> - the reference certstore for verification is not available.</li>
+        <li><code><strong class='fraise'><a href="pysmime.core.MissingSignerCertificate-class.html">MissingSignerCertificate</a></strong></code> - the input PKCS#7 is not a signed PKCS#7.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pysmime-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Oct 30 16:43:41 2012
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
