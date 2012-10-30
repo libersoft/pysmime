@@ -1,0 +1,6 @@
+dist/
+pysmime/test/randpool.dat
+pysmime/test/test_file.p7m
+MANIFEST.in
+MANIFEST
+*.pyc
