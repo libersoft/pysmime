@@ -9,7 +9,7 @@ setup(
     author = 'Lorenzo Gaggini',
     author_email = 'lg@libersoft.it',
     packages = ['pysmime', 'pysmime.test'],
-    url = 'https://github.com/libersoft/pysmime',
+    url = 'http://libersoft.github.com/pysmime',
     license = 'LICENSE',
     keywords = ['smime', 'openssl', 'm2crypto'],
     description = 'High level library for S/MIME basic functions',
