@@ -1,4 +1,4 @@
-# pysmime/core.py
+# pysmime/test/PySmimeTest.py
 # Lorenzo Gaggini <lg@libersoft.it>
 # Libersoft <tech@libersoft.it>
 # http://www.libersoft.it
