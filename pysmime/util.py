@@ -72,7 +72,7 @@ def set_keyring(smime, private_key, cert, keyring_source):
     if keyring_source == 'file':
         smime.load_key(private_key, cert)
         return True
-    elif keyring_source == 'buffer':
+    elif keyring_source == 'memory':
         smime.load_key_bio(private_key, cert)
         return True
     elif keyring_source == 'pkcs11':
@@ -105,7 +105,7 @@ def set_certificate(cert, keyring_source):
     if keyring_source == 'file':
         x509 = X509.load_cert(cert)
         return x509
-    elif keyring_source == 'buffer':
+    elif keyring_source == 'memory':
         x509 = X509.load_cert_bio(cert)
         return x509
     elif keyring_source == 'pkcs11':
