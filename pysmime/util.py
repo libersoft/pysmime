@@ -42,7 +42,7 @@ def BIO_from_file_path(file_path):
     try:
         fd = open(file_path, 'rb')
         file_bio = BIO_from_file(fd)
-    except IOError, e:
+    except IOError as e:
         logging.error('input file not found ' + str(e))
     return file_bio
 

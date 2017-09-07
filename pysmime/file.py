@@ -51,7 +51,7 @@ def file_encrypt(input_file_path, recipient_cert, output_file_path=None,
         try:
             with open(output_file_path, 'wb') as fd:
                 fd.write(encrypted_data.read())
-        except IOError, e:
+        except IOError as e:
             logging.error('IOError in writing encrypted file ' + str(e))
             raise
     return encrypted_data
@@ -94,7 +94,7 @@ def file_decrypt(input_file_path, recipient_private_key, recipient_cert,
         try:
             with open(output_file_path, 'wb') as fd:
                 fd.write(decrypted_data)
-        except IOError, e:
+        except IOError as e:
             logging.error('IOError in writing decrypted file ' + str(e))
             raise
     return decrypted_data
@@ -138,7 +138,7 @@ def file_sign(input_file_path, sender_private_key, sender_cert,
         try:
             with open(output_file_path, 'wb') as fd:
                 fd.write(signed_data.read())
-        except IOError, e:
+        except IOError as e:
             logging.error('IOError in writing signed files ' + str(e))
             raise
     return signed_data
