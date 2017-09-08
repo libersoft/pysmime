@@ -71,10 +71,10 @@ def encrypt(input_bio, cert, keyring_source, cypher):
     Rand.load_file('randpool.dat', -1)
     try:
         p7 = encrypter.encrypt(input_bio)
-    except SMIME.SMIME_Error, e:
+    except SMIME.SMIME_Error as e:
         logging.error('smime error: ' + str(e))
         raise
-    except SMIME.PKCS7_Error, e:
+    except SMIME.PKCS7_Error as e:
         logging.error('pkcs7 error: ' + str(e))
         raise
     Rand.save_file('randpool.dat')
@@ -117,15 +117,15 @@ def decrypt(input_bio, private_key, cert, keyring_source, type):
             logging.error('pkcs7 type error: unknown type')
             raise BadPKCS7Type('unknown type: ' + type +
                         '; possible values: PEM, DER')
-    except SMIME.SMIME_Error, e:
+    except SMIME.SMIME_Error as e:
         logging.error('load pkcs7 error: ' + str(e))
         pass
     try:
         decrypted_data = decrypter.decrypt(p7)
-    except SMIME.SMIME_Error, e:
+    except SMIME.SMIME_Error as e:
         logging.error('smime error: ' + str(e))
         raise
-    except SMIME.PKCS7_Error, e:
+    except SMIME.PKCS7_Error as e:
         logging.error('pkcs7 error: ' + str(e))
         raise
     return decrypted_data.replace('\r', '')
@@ -166,10 +166,10 @@ def sign(input_bio, private_key, cert, keyring_source, type):
             logging.error('pkcs7 type error: unknown type')
             raise BadPKCS7Type('unknown type: ' + type +
                         '; possible values: PEM, DER')
-    except SMIME.SMIME_Error, e:
+    except SMIME.SMIME_Error as e:
         logging.error('smime error: ' + str(e))
         raise
-    except SMIME.PKCS7_Error, e:
+    except SMIME.PKCS7_Error as e:
         logging.error('pkcs7 error: ' + str(e))
         raise
     Rand.save_file('randpool.dat')
@@ -217,7 +217,7 @@ def verify(input_bio, certstore_path, AUTO_SIGNED_CERT, type):
             logging.error('pkcs7 type error: unknown type')
             raise BadPKCS7Type('unknown type: ' + type +
                         '; possible values: PEM, DER')
-    except SMIME.SMIME_Error, e:
+    except SMIME.SMIME_Error as e:
         logging.error('load pkcs7 error: ' + str(e))
         raise
     if data_bio is not None:
@@ -239,10 +239,10 @@ def verify(input_bio, certstore_path, AUTO_SIGNED_CERT, type):
                 v = signer.verify(p7, data_bio, flags=SMIME.PKCS7_NOVERIFY)
             else:
                 v = signer.verify(p7, data_bio)
-    except SMIME.SMIME_Error, e:
+    except SMIME.SMIME_Error as e:
         logging.error('smime error: ' + str(e))
         raise
-    except SMIME.PKCS7_Error, e:
+    except SMIME.PKCS7_Error as e:
         logging.error('pkcs7 error: ' + str(e))
         raise
     if data_bio is not None and data != v and v is not None:
