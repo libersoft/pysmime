@@ -15,7 +15,7 @@ from core import encrypt, sign, decrypt, verify
 
 
 def mail_encrypt(mail, recipient_cert, keyring_source='file',
-                cypher='des_ede3_cbc'):
+                 cypher='des_ede3_cbc'):
     """
     Encrypts the input mail data with public key of input certificate.
 
@@ -43,7 +43,7 @@ def mail_encrypt(mail, recipient_cert, keyring_source='file',
 
 
 def mail_decrypt(encrypted_mail, recipient_private_key, recipient_cert,
-                keyring_source='file', type='PEM'):
+                 keyring_source='file', type='PEM'):
     """
     Decrypts the input mail data with input private key and input certificate.
 
@@ -67,13 +67,13 @@ def mail_decrypt(encrypted_mail, recipient_private_key, recipient_cert,
     @return: the decrypted data in plain form.
     """
     decrypted_mail = decrypt(BIO_from_buffer(encrypted_mail),
-                            recipient_private_key, recipient_cert,
-                            keyring_source, type)
+                             recipient_private_key, recipient_cert,
+                             keyring_source, type)
     return decrypted_mail
 
 
 def mail_sign(mail, sender_private_key, sender_cert, keyring_source='file',
-            type='PEM'):
+              type='PEM'):
     """
     Signs the input mail data with input private key and input certificate.
 
@@ -97,7 +97,7 @@ def mail_sign(mail, sender_private_key, sender_cert, keyring_source='file',
     @return: the signed data in PEM format with MIME header.
     """
     p7 = sign(BIO_from_buffer(mail), sender_private_key, sender_cert,
-                keyring_source, type)
+              keyring_source, type)
     signed_mail = BIO_from_buffer()
     SMIME.SMIME().write(signed_mail, p7, BIO_from_buffer(mail))
     return signed_mail.read()
@@ -124,7 +124,7 @@ def mail_verify(signed_mail, certstore_path, AUTO_SIGNED_CERT=False,
     """
     signed_certs = []
     signed_certs = verify(BIO_from_buffer(signed_mail), certstore_path,
-                        AUTO_SIGNED_CERT, type)
+                          AUTO_SIGNED_CERT, type)
     if signed_certs:
         return signed_certs
     else:

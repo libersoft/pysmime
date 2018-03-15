@@ -25,7 +25,10 @@ def BIO_from_buffer(data=None):
     """
     Returns a BIO oject for OpenSSL from input memory buffer
     """
-    return BIO.MemoryBuffer(data)
+    if not data or isinstance(data, bytes):
+        return BIO.MemoryBuffer(data)
+    else:
+        return BIO.MemoryBuffer(bytes(data))
 
 
 def BIO_from_file(fd):
@@ -81,9 +84,9 @@ def set_keyring(smime, private_key, cert, keyring_source):
         return True
     else:
         logging.error('unknown keyring source: ' + keyring_source +
-                    '; possible values: file, memory, pkcs11')
+                      '; possible values: file, memory, pkcs11')
         raise BadKeyringSource('unknown keyring source: ' + keyring_source +
-                    '; possible values: file, memory, pkcs11')
+                               '; possible values: file, memory, pkcs11')
 
 
 def set_certificate(cert, keyring_source):
@@ -113,6 +116,6 @@ def set_certificate(cert, keyring_source):
         return x509
     else:
         logging.error('unknown keyring source: ' + keyring_source +
-                    '; possible values: file, memory, pkcs11')
+                      '; possible values: file, memory, pkcs11')
         raise BadKeyringSource('unknown keyring source: ' + keyring_source +
-                    '; possible values: file, memory, pkcs11')
+                               '; possible values: file, memory, pkcs11')

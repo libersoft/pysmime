@@ -1,6 +1,10 @@
-dist/
-pysmime/test/randpool.dat
-pysmime/test/test_file.p7m
-MANIFEST.in
-MANIFEST
+/*.egg-info
+/.cache
+/.pytest_cache/
+/.tox
+/dist/
+/tests/test_file.p7m
 *.pyc
+*.swp
+MANIFEST
+MANIFEST.in

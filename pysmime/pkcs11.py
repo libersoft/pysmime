@@ -18,7 +18,7 @@ def pkcs11_init(pkcs11_engine, pkcs11_driver):
     initialized engine for operations.
     """
     # loading Dynamic engine to load the PKCS#11 engine
-    dynamic = Engine.load_dynamic_engine("pkcs11", pkcs11_engine)
+    Engine.load_dynamic_engine("pkcs11", pkcs11_engine)
     # loading pkcs#11 module
     pkcs11 = Engine.Engine("pkcs11")
     pkcs11.ctrl_cmd_string("MODULE_PATH", pkcs11_driver)
