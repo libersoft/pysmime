@@ -12,10 +12,10 @@ top of M2Crypto library wrapper to OpenSSL.
 import os
 import base64
 import logging
-import psutil
 
-from M2Crypto import SMIME, X509, Rand, m2
-from util import BIO_from_buffer, set_keyring, set_certificate
+from M2Crypto import SMIME, X509, m2
+from pysmime.util import (BIO_from_buffer, set_keyring, set_certificate,
+                          seed_prng)
 
 
 class BadPKCS7Type(BaseException):
@@ -39,15 +39,6 @@ class MissingSignerCertificate(BaseException):
     Exception raised if the input PKCS#7 is not a signed PKCS#7.
     """
     pass
-
-
-def seed_prng():
-    """
-    Seed the pseudorandom number generator
-    """
-    Rand.rand_seed(str([getattr(psutil, a)() for a in [
-        'sensors_temperatures', 'users', 'virtual_memory', 'net_connections',
-        'pids', 'disk_partitions']]))
 
 
 def encrypt(input_bio, cert, keyring_source, cypher):
