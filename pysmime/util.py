@@ -25,7 +25,10 @@ def BIO_from_buffer(data=None):
     """
     Returns a BIO oject for OpenSSL from input memory buffer
     """
-    return BIO.MemoryBuffer(data)
+    if not data or isinstance(data, bytes):
+        return BIO.MemoryBuffer(data)
+    else:
+        return BIO.MemoryBuffer(bytes(data))
 
 
 def BIO_from_file(fd):

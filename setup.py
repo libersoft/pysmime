@@ -1,20 +1,26 @@
 from distutils.core import setup
 
+with open('requirements.txt') as f:
+    install_requirements = f.readlines()
+
+with open('test-requirements.txt') as f:
+    test_requirements = f.readlines()
+
 with open('README.md') as file:
     long_description = file.read()
 
 setup(
-    name = 'pysmime',
-    version = '0.1.0',
-    author = 'Lorenzo Gaggini',
-    author_email = 'lg@libersoft.it',
-    packages = ['pysmime', 'pysmime.test'],
-    url = 'http://libersoft.github.com/pysmime',
-    license = 'LICENSE',
-    keywords = ['smime', 'openssl', 'm2crypto'],
-    description = 'High level library for S/MIME basic functions',
-    long_description = long_description,
-    classifiers = [
+    name='pysmime',
+    version='0.1.0',
+    author='Lorenzo Gaggini',
+    author_email='lg@libersoft.it',
+    packages=['pysmime'],
+    url='http://libersoft.github.com/pysmime',
+    license='LICENSE',
+    keywords=['smime', 'openssl', 'm2crypto'],
+    description='High level library for S/MIME basic functions',
+    long_description=long_description,
+    classifiers=[
         'Programming Language :: Python',
         'Development Status :: 3 - Alpha',
         'Environment :: Other Environment',
@@ -23,8 +29,7 @@ setup(
         'Operating System :: OS Independent',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Security :: Cryptography',
-        ],
-    install_requires = [
-        "M2Crypto == 0.21.1"
     ],
+    install_requires=install_requirements,
+    tests_require=test_requirements,
 )

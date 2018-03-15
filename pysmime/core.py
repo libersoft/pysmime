@@ -12,6 +12,7 @@ top of M2Crypto library wrapper to OpenSSL.
 import os
 import base64
 import logging
+import psutil
 
 from M2Crypto import SMIME, X509, Rand, m2
 from util import BIO_from_buffer, set_keyring, set_certificate
@@ -38,6 +39,15 @@ class MissingSignerCertificate(BaseException):
     Exception raised if the input PKCS#7 is not a signed PKCS#7.
     """
     pass
+
+
+def seed_prng():
+    """
+    Seed the pseudorandom number generator
+    """
+    Rand.rand_seed(str([getattr(psutil, a)() for a in [
+        'sensors_temperatures', 'users', 'virtual_memory', 'net_connections',
+        'pids', 'disk_partitions']]))
 
 
 def encrypt(input_bio, cert, keyring_source, cypher):
@@ -68,7 +78,7 @@ def encrypt(input_bio, cert, keyring_source, cypher):
     sk.push(x509)
     encrypter.set_x509_stack(sk)
     encrypter.set_cipher(SMIME.Cipher(cypher))
-    Rand.load_file('randpool.dat', -1)
+    seed_prng()
     try:
         p7 = encrypter.encrypt(input_bio)
     except SMIME.SMIME_Error as e:
@@ -77,7 +87,6 @@ def encrypt(input_bio, cert, keyring_source, cypher):
     except SMIME.PKCS7_Error as e:
         logging.error('pkcs7 error: ' + str(e))
         raise
-    Rand.save_file('randpool.dat')
     return p7
 
 
@@ -128,7 +137,7 @@ def decrypt(input_bio, private_key, cert, keyring_source, type):
     except SMIME.PKCS7_Error as e:
         logging.error('pkcs7 error: ' + str(e))
         raise
-    return decrypted_data.replace('\r', '')
+    return decrypted_data.replace(b'\r', b'')
 
 
 def sign(input_bio, private_key, cert, keyring_source, type):
@@ -156,7 +165,7 @@ def sign(input_bio, private_key, cert, keyring_source, type):
     """
     signer = SMIME.SMIME()
     set_keyring(signer, private_key, cert, keyring_source)
-    Rand.load_file('randpool.dat', -1)
+    seed_prng()
     try:
         if type == 'PEM':
             p7 = signer.sign(input_bio, flags=SMIME.PKCS7_DETACHED)
@@ -172,7 +181,6 @@ def sign(input_bio, private_key, cert, keyring_source, type):
     except SMIME.PKCS7_Error as e:
         logging.error('pkcs7 error: ' + str(e))
         raise
-    Rand.save_file('randpool.dat')
     return p7
 
 
@@ -230,8 +238,8 @@ def verify(input_bio, certstore_path, AUTO_SIGNED_CERT, type):
     signer_certs = []
     for cert in sk3:
         signer_certs.append(
-            "-----BEGIN CERTIFICATE-----\n%s-----END CERTIFICATE-----\n"
-                % base64.encodestring(cert.as_der()))
+            "-----BEGIN CERTIFICATE-----\n{}-----END CERTIFICATE-----\n"
+            .format(base64.encodestring(cert.as_der()).decode('ascii')))
     signer.set_x509_stack(sk3)
     v = None
     try:
