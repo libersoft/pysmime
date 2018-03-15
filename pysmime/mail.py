@@ -10,8 +10,8 @@ of pysmime/core.
 """
 
 from M2Crypto import SMIME
-from util import BIO_from_buffer
-from core import encrypt, sign, decrypt, verify
+from pysmime.core import encrypt, sign, decrypt, verify
+from pysmime.util import BIO_from_buffer
 
 
 def mail_encrypt(mail, recipient_cert, keyring_source='file',

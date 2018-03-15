@@ -11,8 +11,8 @@ pysmime/core.
 
 import logging
 
-from util import BIO_from_buffer, BIO_from_file_path
-from core import encrypt, sign, decrypt, verify
+from pysmime.core import encrypt, sign, decrypt, verify
+from pysmime.util import BIO_from_buffer, BIO_from_file_path
 
 
 def file_encrypt(input_file_path, recipient_cert, output_file_path=None,

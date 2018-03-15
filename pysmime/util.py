@@ -9,8 +9,9 @@ Some useful functions.
 """
 
 import logging
+import psutil
 
-from M2Crypto import BIO, X509
+from M2Crypto import BIO, X509, Rand
 
 
 class BadKeyringSource(BaseException):
@@ -119,3 +120,19 @@ def set_certificate(cert, keyring_source):
                       '; possible values: file, memory, pkcs11')
         raise BadKeyringSource('unknown keyring source: ' + keyring_source +
                                '; possible values: file, memory, pkcs11')
+
+
+def seed_prng():
+    """
+    Seed the pseudorandom number generator
+    """
+    sources = ['sensors_temperatures', 'users', 'virtual_memory',
+               'net_connections', 'pids', 'disk_partitions']
+    try:
+        # Python 3
+        Rand.rand_seed(bytes(''.join([str(getattr(psutil, a)())
+                       for a in sources]), 'utf-8'))
+    except TypeError:
+        # Python 2
+        Rand.rand_seed(str([getattr(psutil, a)()
+                       for a in sources]))
