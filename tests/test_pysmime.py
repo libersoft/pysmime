@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# pysmime/test/PySmimeTest.py
+# tests/test_pysmime.py
 # Lorenzo Gaggini <lg@libersoft.it>
 # Libersoft <tech@libersoft.it>
 # http://www.libersoft.it
