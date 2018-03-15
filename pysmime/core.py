@@ -125,7 +125,7 @@ def decrypt(input_bio, private_key, cert, keyring_source, type):
         else:
             logging.error('pkcs7 type error: unknown type')
             raise BadPKCS7Type('unknown type: ' + type +
-                        '; possible values: PEM, DER')
+                               '; possible values: PEM, DER')
     except SMIME.SMIME_Error as e:
         logging.error('load pkcs7 error: ' + str(e))
         pass
@@ -174,7 +174,7 @@ def sign(input_bio, private_key, cert, keyring_source, type):
         else:
             logging.error('pkcs7 type error: unknown type')
             raise BadPKCS7Type('unknown type: ' + type +
-                        '; possible values: PEM, DER')
+                               '; possible values: PEM, DER')
     except SMIME.SMIME_Error as e:
         logging.error('smime error: ' + str(e))
         raise
@@ -224,7 +224,7 @@ def verify(input_bio, certstore_path, AUTO_SIGNED_CERT, type):
         else:
             logging.error('pkcs7 type error: unknown type')
             raise BadPKCS7Type('unknown type: ' + type +
-                        '; possible values: PEM, DER')
+                               '; possible values: PEM, DER')
     except SMIME.SMIME_Error as e:
         logging.error('load pkcs7 error: ' + str(e))
         raise

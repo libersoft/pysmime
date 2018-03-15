@@ -16,7 +16,7 @@ from core import encrypt, sign, decrypt, verify
 
 
 def file_encrypt(input_file_path, recipient_cert, output_file_path=None,
-                keyring_source='file', cypher='des_ede3_cbc'):
+                 keyring_source='file', cypher='des_ede3_cbc'):
     """
     Encrypts the input file data with public key of input certificate. If an
     output file path is present, the encrypted data is also written to that
@@ -58,7 +58,7 @@ def file_encrypt(input_file_path, recipient_cert, output_file_path=None,
 
 
 def file_decrypt(input_file_path, recipient_private_key, recipient_cert,
-                output_file_path=None, keyring_source='file', type='DER'):
+                 output_file_path=None, keyring_source='file', type='DER'):
     """
     Decrypts the input file data with input private key and input certificate.
     If an output file path is present, the decrypted data is also written to
@@ -89,7 +89,7 @@ def file_decrypt(input_file_path, recipient_private_key, recipient_cert,
     """
     file_bio = BIO_from_file_path(input_file_path)
     decrypted_data = decrypt(file_bio, recipient_private_key, recipient_cert,
-                            keyring_source, type)
+                             keyring_source, type)
     if output_file_path:
         try:
             with open(output_file_path, 'wb') as fd:
@@ -101,7 +101,7 @@ def file_decrypt(input_file_path, recipient_private_key, recipient_cert,
 
 
 def file_sign(input_file_path, sender_private_key, sender_cert,
-            output_file_path=None, keyring_source='file', type='DER'):
+              output_file_path=None, keyring_source='file', type='DER'):
     """
     Signs the input file data with input private key and input certificate.
     If an output file path is present, the signed data is also written to that
