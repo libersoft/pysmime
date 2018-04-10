@@ -130,9 +130,11 @@ def seed_prng():
                'net_connections', 'pids', 'disk_partitions']
     try:
         # Python 3
-        Rand.rand_seed(bytes(''.join([str(getattr(psutil, a)())
+        Rand.rand_seed(bytes(''.join([str(getattr(psutil, a, str)())
                        for a in sources]), 'utf-8'))
     except TypeError:
         # Python 2
-        Rand.rand_seed(str([getattr(psutil, a)()
+        Rand.rand_seed(str([getattr(psutil, a, str)()
                        for a in sources]))
+
+    return True
