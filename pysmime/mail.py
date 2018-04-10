@@ -73,7 +73,7 @@ def mail_decrypt(encrypted_mail, recipient_private_key, recipient_cert,
 
 
 def mail_sign(mail, sender_private_key, sender_cert, keyring_source='file',
-              type='PEM'):
+              type='PEM', algo='sha256'):
     """
     Signs the input mail data with input private key and input certificate.
 
@@ -93,11 +93,13 @@ def mail_sign(mail, sender_private_key, sender_cert, keyring_source='file',
         values are: file, memory, pkcs11.
     @type type: str
     @keyword type: specifies the type of output PKCS#7 data: PEM or DER
+    @type algo: str
+    @keyword algo: specifies message digest algorithm (micalg), e.g. sha256
     @rtype: str
     @return: the signed data in PEM format with MIME header.
     """
     p7 = sign(BIO_from_buffer(mail), sender_private_key, sender_cert,
-              keyring_source, type)
+              keyring_source, type, algo)
     signed_mail = BIO_from_buffer()
     SMIME.SMIME().write(signed_mail, p7, BIO_from_buffer(mail))
     return signed_mail.read()

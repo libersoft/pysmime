@@ -101,7 +101,8 @@ def file_decrypt(input_file_path, recipient_private_key, recipient_cert,
 
 
 def file_sign(input_file_path, sender_private_key, sender_cert,
-              output_file_path=None, keyring_source='file', type='DER'):
+              output_file_path=None, keyring_source='file', type='DER',
+              algo='sha512'):
     """
     Signs the input file data with input private key and input certificate.
     If an output file path is present, the signed data is also written to that
@@ -127,11 +128,14 @@ def file_sign(input_file_path, sender_private_key, sender_cert,
         values are: file, memory, pkcs11.
     @type type: str
     @keyword type: specifies the type of output PKCS#7 data: PEM or DER
+    @type algo: str
+    @keyword algo: specifies message digest algorithm, e.g. sha512
     @rtype: M2Crypto.SMIME.PKCS7
     @return: the PKCS#7 signed data in DER format.
     """
     file_bio = BIO_from_file_path(input_file_path)
-    p7 = sign(file_bio, sender_private_key, sender_cert, keyring_source, type)
+    p7 = sign(file_bio, sender_private_key, sender_cert, keyring_source, type,
+              algo)
     signed_data = BIO_from_buffer()
     p7.write_der(signed_data)
     if output_file_path:
