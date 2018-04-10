@@ -13,6 +13,8 @@ are no PKCS11 test cases.
 
 import unittest
 import os
+import M2Crypto
+import pytest
 
 from pysmime import mail, file
 
@@ -49,6 +51,9 @@ class PySmimeTest(unittest.TestCase):
         self.assertEqual(original_certificate.decode('ascii').replace('\n', ''),
                          certificate.replace('\n', ''))
 
+    @pytest.mark.skipif(M2Crypto.version_info < (0, 26),
+                        reason='m2crypto<0.26 does not support message digests '
+                               'of our choice')
     def test_mail_sign_nondefault_digest(self):
         signed_mail = mail.mail_sign(self.mail, self.sender_key_path,
                                      self.sender_cert_path, algo='sha384')
@@ -60,7 +65,8 @@ class PySmimeTest(unittest.TestCase):
         decrypted_file = file.file_decrypt(
             self.file_out, self.recipient_key_path, self.recipient_cert_path)
         original_file_data = open(self.file, 'rb').read()
-        self.assertEqual(original_file_data, decrypted_file)
+        self.assertEqual(original_file_data.rstrip(b'\n'),
+                         decrypted_file.rstrip(b'\n'))
 
     def test_file_sign(self):
         file.file_sign(self.file, self.sender_key_path,
