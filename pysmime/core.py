@@ -131,7 +131,7 @@ def decrypt(input_bio, private_key, cert, keyring_source, type):
     return decrypted_data.replace(b'\r', b'')
 
 
-def sign(input_bio, private_key, cert, keyring_source, type):
+def sign(input_bio, private_key, cert, keyring_source, type, algo):
     """
     Signs the input data with the private key and the certificate from keyring
     source.
@@ -151,6 +151,8 @@ def sign(input_bio, private_key, cert, keyring_source, type):
         values are: file, memory, pkcs11.
     @type type: str
     @keyword type: specifies the type of output PKCS#7 data: PEM or DER
+    @type algo: str
+    @keyword algo: specifies message digest algorithm, e.g. sha256
     @rtype: M2Crypto.SMIME.PKCS7
     @return: the PKCS#7 signed data in PEM or DER format.
     """
@@ -159,9 +161,9 @@ def sign(input_bio, private_key, cert, keyring_source, type):
     seed_prng()
     try:
         if type == 'PEM':
-            p7 = signer.sign(input_bio, flags=SMIME.PKCS7_DETACHED)
+            p7 = signer.sign(input_bio, flags=SMIME.PKCS7_DETACHED, algo=algo)
         elif type == 'DER':
-            p7 = signer.sign(input_bio)
+            p7 = signer.sign(input_bio, algo=algo)
         else:
             logging.error('pkcs7 type error: unknown type')
             raise BadPKCS7Type('unknown type: ' + type +

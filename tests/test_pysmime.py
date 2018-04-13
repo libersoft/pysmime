@@ -49,6 +49,11 @@ class PySmimeTest(unittest.TestCase):
         self.assertEqual(original_certificate.decode('ascii').replace('\n', ''),
                          certificate.replace('\n', ''))
 
+    def test_mail_sign_nondefault_digest(self):
+        signed_mail = mail.mail_sign(self.mail, self.sender_key_path,
+                                     self.sender_cert_path, algo='sha384')
+        assert 'micalg="sha-384"' in str(signed_mail)
+
     def test_file_encryption(self):
         file.file_encrypt(self.file, self.recipient_cert_path,
                           self.file_out)
