@@ -11,7 +11,7 @@ with open('README.md') as file:
 
 setup(
     name='pysmime3',
-    version='0.2.0',
+    version='0.2.1',
     author='Lorenzo Gaggini',
     author_email='lg@lgaggini.net',
     packages=['pysmime'],
