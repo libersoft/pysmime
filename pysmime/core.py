@@ -11,6 +11,7 @@ top of M2Crypto library wrapper to OpenSSL.
 
 import os
 import base64
+import inspect
 import logging
 
 from M2Crypto import SMIME, X509, m2
@@ -159,11 +160,16 @@ def sign(input_bio, private_key, cert, keyring_source, type, algo):
     signer = SMIME.SMIME()
     set_keyring(signer, private_key, cert, keyring_source)
     seed_prng()
+    sign_args = dict()
+    if 'algo' in inspect.getargspec(signer.sign).args:
+        sign_args = {'algo': algo}
+        logging.debug('The underlying M2Crypto does not support message '
+                      'digest algorithms of our choice.')
     try:
         if type == 'PEM':
-            p7 = signer.sign(input_bio, flags=SMIME.PKCS7_DETACHED, algo=algo)
+            p7 = signer.sign(input_bio, flags=SMIME.PKCS7_DETACHED, **sign_args)
         elif type == 'DER':
-            p7 = signer.sign(input_bio, algo=algo)
+            p7 = signer.sign(input_bio, **sign_args)
         else:
             logging.error('pkcs7 type error: unknown type')
             raise BadPKCS7Type('unknown type: ' + type +
